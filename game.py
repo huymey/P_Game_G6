@@ -1,6 +1,7 @@
 
 
 import tkinter as tk
+import winsound
 root=tk.Tk()
 root.geometry("600x600")
 frame=tk.Frame()
@@ -91,6 +92,7 @@ def getStatus():
         canvas.create_text(300,300,fill="black",font="Times 30 italic bold",text="You win!")
     elif numberOfLife==0: 
         canvas.create_text(300,300,fill="black",font="Times 30 italic bold",text="You lost!")
+
 #####getIndex1
 
 def getIndex1(grid):
@@ -117,19 +119,24 @@ def moveRight(event):
     elif grid[row][col+1]!=2 and grid[row][col+1]==0 and not IsTrue:
         grid[row][col] = 7
         grid[row][col+1] = 1
-        ScoreOfCoin+=1     
+        ScoreOfCoin+=1  
+        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)    
         arrayToDrawing()
         if ScoreOfCoin==173:
             IsTrue=True
             getStatus()
+            winsound.PlaySound('sound/win.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
     elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not IsTrue:
         grid[row][col] = 7
         grid[row][col+1] = 1
         numberOfLife-=1
+        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
         arrayToDrawing()
         if numberOfLife==0:
             IsTrue=True
             getStatus()
+            winsound.PlaySound('sound/gameover1.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
+        
     print(grid)
 
 #####move left
@@ -147,6 +154,7 @@ def moveLeft(event):
         grid[row][col] = 7
         grid[row][col-1] = 1
         ScoreOfCoin+=1
+        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if ScoreOfCoin==173:
             IsTrue=True
@@ -155,6 +163,7 @@ def moveLeft(event):
         grid[row][col] = 7
         grid[row][col-1] = 1
         numberOfLife-=1
+        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if numberOfLife==0:
             IsTrue=True
@@ -176,6 +185,7 @@ def moveDown(event):
         grid[row][col] = 7
         grid[row+1][col] = 1
         ScoreOfCoin+=1
+        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if numberOfLife==0:
             IsTrue=True
@@ -184,6 +194,7 @@ def moveDown(event):
         grid[row][col] = 7
         grid[row+1][col] = 1
         numberOfLife-=1
+        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if numberOfLife==0:
             IsTrue=True
@@ -205,6 +216,7 @@ def moveUp(event):
         grid[row][col] = 7
         grid[row-1][col] = 1
         ScoreOfCoin+=1
+        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if ScoreOfCoin==173:
             IsTrue=True
@@ -213,6 +225,7 @@ def moveUp(event):
         grid[row][col] = 7
         grid[row-1][col] = 1
         numberOfLife-=1
+        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         arrayToDrawing()
         if numberOfLife==0:
             IsTrue=True
