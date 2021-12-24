@@ -15,6 +15,7 @@ img=tk.PhotoImage(file="images/walls.png")
 anemy5=tk.PhotoImage(file='images/Enyme5.png')
 coins=tk.PhotoImage(file='images/Coins.png')
 life=tk.PhotoImage(file='images/life.png')
+
 ####Data
 
 # empty=0
@@ -82,7 +83,7 @@ def arrayToDrawing():
     canvas.create_text(300,45,fill="black",font="Times 16 italic bold",text="Level:  1")
     canvas.create_text(450,45,fill="black",font="Times 16 italic bold",text="You have: "+str(numberOfLife)+" life")
     
-arrayToDrawing()
+# arrayToDrawing()
 
 
 ## Create score  and Level to tasbar
@@ -232,11 +233,18 @@ def moveUp(event):
             getStatus()
     print(grid)
 
+## Button Start Game
+x1=100
+y1=100
+def startGame():
+    arrayToDrawing()
+    button_start.pack_forget()
+button_start=tk.Button( root,text="Start Play",font="Times 30 italic bold" ,command=startGame)
+button_start.pack(expand=True,fill='both')
 
-     
 #####button
 
-arrayToDrawing()
+# arrayToDrawing()
 root.bind('<Right>', moveRight)
 root.bind('<Left>', moveLeft)
 root.bind('<Down>', moveDown)
