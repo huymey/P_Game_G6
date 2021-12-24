@@ -11,10 +11,7 @@ canvas=tk.Canvas(frame)
 
 myImage= tk.PhotoImage(file='images/player.png')
 img=tk.PhotoImage(file="images/walls.png")
-anemy3= tk.PhotoImage(file='images/Enyme3.png')
-anemy4=tk.PhotoImage(file='images/Enyme4.png')
 anemy5=tk.PhotoImage(file='images/Enyme5.png')
-anemy6=tk.PhotoImage(file='images/Enyme6.png')
 coins=tk.PhotoImage(file='images/Coins.png')
 life=tk.PhotoImage(file='images/life.png')
 ####Data
@@ -36,8 +33,8 @@ grid=[
     [2,0,2,0,2,0,2,2,2,2,2,2,2,0,2,0,2,0,0,2],
     [2,0,2,0,2,0,2,0,0,0,0,0,0,0,2,0,2,0,0,2],
     [2,0,2,0,2,0,2,0,2,2,2,2,2,0,2,0,2,0,0,2],
-    [2,0,2,0,2,0,2,0,6,0,4,0,2,0,2,0,2,0,0,2],
-    [2,0,2,0,0,0,2,0,0,3,0,5,2,0,0,0,2,0,0,2],
+    [2,0,2,0,2,0,2,1,5,0,5,0,2,0,2,0,2,0,0,2],
+    [2,0,2,0,0,0,2,0,0,5,0,5,2,0,0,0,2,0,0,2],
     [2,0,2,0,2,0,2,0,2,2,2,2,2,0,2,0,2,0,0,2],
     [2,0,2,0,2,0,2,0,0,0,0,0,0,0,2,0,2,0,0,2],
     [2,0,2,0,2,0,2,2,2,2,2,2,2,0,2,0,2,0,0,2],
@@ -45,12 +42,13 @@ grid=[
     [2,0,2,0,2,2,2,2,2,0,2,2,2,2,2,0,2,0,0,2],
     [2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2],
     [2,0,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,0,0,2],
-    [2,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,2],
+    [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ]
 numberOfLife=3
 ScoreOfCoin=0
-topScore=8
+topScore=173
+IsTrue=False
 def arrayToDrawing():
     canvas.delete("all")
     y1=0
@@ -66,14 +64,8 @@ def arrayToDrawing():
             elif number==2:
                 canvas.create_rectangle(x1,y1,x2,y2,fill="pink")
                 canvas.create_image(x1, y1, image=img, anchor="nw")
-            elif number==3:
-                canvas.create_image(x1, y1, image=anemy3, anchor="nw" )
-            elif number==4:
-                canvas.create_image(x1, y1, image=anemy4, anchor="nw" )
             elif number==5:
                 canvas.create_image(x1, y1, image=anemy5, anchor="nw" )
-            elif number==6:
-                canvas.create_image(x1, y1, image=anemy6, anchor="nw" )
             elif number==7:
                 # grid-empty
                 canvas.create_rectangle(x1,y1,x2,y2,fill="white",outline="")
@@ -96,9 +88,9 @@ arrayToDrawing()
 # status
 def getStatus():
     if ScoreOfCoin==topScore:
-        canvas.create_text(90,45,fill="black",font="Times 16 italic bold",text="You win!")
+        canvas.create_text(300,300,fill="black",font="Times 30 italic bold",text="You win!")
     elif numberOfLife==0: 
-        canvas.create_text(90,45,fill="black",font="Times 16 italic bold",text="You lost!")
+        canvas.create_text(300,300,fill="black",font="Times 30 italic bold",text="You lost!")
 #####getIndex1
 
 def getIndex1(grid):
@@ -114,68 +106,117 @@ def getIndex1(grid):
 #####move right
 
 def moveRight(event):
-    global grid,ScoreOfCoin
+    global grid,ScoreOfCoin,IsTrue,numberOfLife
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
-    if col+1 < len(grid[0]) and grid[row][col+1]!=2 and grid[row][col+1]!=0:
+    if col+1 < len(grid[0]) and grid[row][col+1]!=2 and grid[row][col+1]!=0 and grid[row][col+1]!=5:
         grid[row][col] = 7
         grid[row][col+1] = 1
         arrayToDrawing()
-    elif grid[row][col+1]!=2 and grid[row][col+1]==0 :
+    elif grid[row][col+1]!=2 and grid[row][col+1]==0 and not IsTrue:
         grid[row][col] = 7
         grid[row][col+1] = 1
         ScoreOfCoin+=1     
         arrayToDrawing()
-        if ScoreOfCoin==8:
-            getStatus() 
+        if ScoreOfCoin==173:
+            IsTrue=True
+            getStatus()
+    elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not IsTrue:
+        grid[row][col] = 7
+        grid[row][col+1] = 1
+        numberOfLife-=1
+        arrayToDrawing()
+        if numberOfLife==0:
+            IsTrue=True
+            getStatus()
     print(grid)
 
 #####move left
 
 def moveLeft(event):
-    global grid,ScoreOfCoin
+    global grid,ScoreOfCoin,IsTrue,numberOfLife
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
-    if col-1 >= 0 and grid[row][col-1]!=2 and grid[row][col-1]!=0 :
+    if col-1 >= 0 and grid[row][col-1]!=2 and grid[row][col-1]!=0 and grid[row][col-1]!=5:
         grid[row][col] = 7
         grid[row][col-1] = 1
         arrayToDrawing()
-    elif grid[row][col-1]!=2 and grid[row][col-1]==0:
+    elif grid[row][col-1]!=2 and grid[row][col-1]==0 and not IsTrue:
         grid[row][col] = 7
         grid[row][col-1] = 1
         ScoreOfCoin+=1
         arrayToDrawing()
+        if ScoreOfCoin==173:
+            IsTrue=True
+            getStatus()
+    elif grid[row][col-1]!=2 and grid[row][col-1]==5 and not IsTrue:
+        grid[row][col] = 7
+        grid[row][col-1] = 1
+        numberOfLife-=1
+        arrayToDrawing()
+        if numberOfLife==0:
+            IsTrue=True
+            getStatus()  
     print(grid)
 
 #####move 
 
 def moveDown(event):
-    global grid
+    global grid,ScoreOfCoin,IsTrue,numberOfLife
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
-    if row+1 < len(grid) and grid[row+1][col]!=2 and grid[row+1][col]!=0:
+    if row+1 < len(grid) and grid[row+1][col]!=2 and grid[row+1][col]!=0 and grid[row+1][col]!=5:
         grid[row][col] = 7
         grid[row+1][col] = 1
         arrayToDrawing()
-    elif grid[row+1][col]!=2 and grid[row+1][col]!=0:
+    elif grid[row+1][col]!=2 and grid[row+1][col]==0 and not IsTrue:
         grid[row][col] = 7
         grid[row+1][col] = 1
+        ScoreOfCoin+=1
+        arrayToDrawing()
+        if numberOfLife==0:
+            IsTrue=True
+            getStatus()
+    elif grid[row+1][col]!=2 and grid[row+1][col]==5 and not IsTrue:
+        grid[row][col] = 7
+        grid[row+1][col] = 1
+        numberOfLife-=1
+        arrayToDrawing()
+        if numberOfLife==0:
+            IsTrue=True
+            getStatus()  
     print(grid)
 
 #####move up
 
 def moveUp(event):
-    global grid
+    global grid,ScoreOfCoin,IsTrue,numberOfLife
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
-    if row-1 >= 0 and grid[row-1][col]!=2 :
+    if row-1 >= 0 and grid[row-1][col]!=2 and grid[row-1][col]!=0 and grid[row-1][col]!=5:
         grid[row][col] = 7
         grid[row-1][col] = 1
-    arrayToDrawing()
+        arrayToDrawing()
+    elif grid[row-1][col]!=2 and grid[row-1][col]==0 and not IsTrue:
+        grid[row][col] = 7
+        grid[row-1][col] = 1
+        ScoreOfCoin+=1
+        arrayToDrawing()
+        if ScoreOfCoin==173:
+            IsTrue=True
+            getStatus() 
+    elif grid[row-1][col]!=2 and grid[row-1][col]==5 and not IsTrue:
+        grid[row][col] = 7
+        grid[row-1][col] = 1
+        numberOfLife-=1
+        arrayToDrawing()
+        if numberOfLife==0:
+            IsTrue=True
+            getStatus()
     print(grid)
 
 
