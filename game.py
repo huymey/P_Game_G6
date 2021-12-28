@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import Menu, font
 from tkinter.constants import COMMAND
+from typing import Text
 import winsound
 root=tk.Tk()
 root.geometry("1800x1000")
@@ -41,7 +42,7 @@ def arrayToDrawing():
     
     y1=30
     y2=60
-    if not isTrue and scoreOfCoin<20:
+    if not isTrue and scoreOfCoin<100:
         for index in grid:
             x1=30
             x2=60
@@ -94,9 +95,9 @@ def positionOfPlayer(position):
         grid[row][col] = 7
         grid[row][col+1] = 1
         touchCoin()
-        scoreOfCoin+=1  
+        scoreOfCoin+=10  
         arrayToDrawing()
-        if scoreOfCoin==10:
+        if scoreOfCoin==100:
             isTrue=True
             win()
     elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not isTrue and position=="Right":
@@ -116,10 +117,10 @@ def positionOfPlayer(position):
     elif grid[row][col-1]!=2 and grid[row][col-1]==0 and not isTrue and position=="Left":
         grid[row][col] = 7
         grid[row][col-1] = 1
-        scoreOfCoin+=1
+        scoreOfCoin+=10
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==10:
+        if scoreOfCoin==100:
             isTrue=True
             win()
     elif grid[row][col-1]!=2 and grid[row][col-1]==5 and not isTrue and position=="Left":
@@ -139,10 +140,10 @@ def positionOfPlayer(position):
     elif grid[row+1][col]!=2 and grid[row+1][col]==0 and not isTrue and position=="Down":
         grid[row][col] = 7
         grid[row+1][col] = 1
-        scoreOfCoin+=1
+        scoreOfCoin+=10
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==10:
+        if scoreOfCoin==100:
             isTrue=True
             win()
     elif grid[row+1][col]!=2 and grid[row+1][col]==5 and not isTrue and position=="Down":
@@ -163,10 +164,10 @@ def positionOfPlayer(position):
     elif grid[row-1][col]!=2 and grid[row-1][col]==0 and not isTrue and position=="Up":
         grid[row][col] = 7
         grid[row-1][col] = 1
-        scoreOfCoin+=1
+        scoreOfCoin+=10
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==10:
+        if scoreOfCoin==100:
             isTrue=True
             win()
 
@@ -202,24 +203,35 @@ def win():
     global grid
     canvas.delete("all")
     canvas.create_image(650, 300, image=winnerImg)
-    canvas.create_text(700,300,text="🙌YOU WIN🙌 !",font=("Pursia",30,"bold"))
+    canvas.create_text(660,300,text="🙌YOU WIN🙌 !",font=("Pursia",30,"bold"))
+    canvas.create_text(660,375,fill="black",font="Times 20 bold",text="Score is: "+str(scoreOfCoin)+" point")
+    canvas.create_text(650,425,fill="black",font="Times 20 bold",text="You have: "+str(numberOfLife)+" life")
     gameWin()
 
 # _________________________________display message lost_________________________________
 def lost():
     canvas.delete("all")
-    canvas.create_image(650, 300, image=lostImg)
-    canvas.create_text(700,300)
+    canvas.create_rectangle(0,0,1800,1000,fill="gray")
+    canvas.create_text(700,300,text="GAME OVER",font=("",40))
+    canvas.create_rectangle(625,475,750,525,fill="green",tags="exit")
+    canvas.create_text(690,500,text="Exit",font=("",20),tags="exit")
+    canvas.create_text(660,375,fill="black",font="Times 20 bold",text="Score is: "+str(scoreOfCoin)+" point")
+    canvas.create_text(650,425,fill="black",font="Times 20 bold",text="You have: "+str(numberOfLife)+" life")
     gameOver()
 
-##_________________________________Button Start Game_________________________________
+##_________________________________Button _________________________________
 
-def startGame():
+#_________________button startgame______________
+def startGame():  
     arrayToDrawing()
     button_start.pack_forget()
 button_start=tk.Button( root,text="Start Play",font=("Times",40) ,command=startGame)
 canvas.create_window(600,400,window=button_start)
 winsound.PlaySound('sound/startgame.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+#___________________button exit game____________
+def buttonExit(event):
+    root.quit()
+canvas.tag_bind("exit","<Button-1>",buttonExit)
 
 #__________________________________________sound action____________
 def touchCoin():
@@ -245,7 +257,7 @@ lostImg = tk.PhotoImage(file="images/lost.png")
 
 numberOfLife=3
 scoreOfCoin=0
-topScore=173
+topScore=5000
 isTrue=False
 isWon = True
 
