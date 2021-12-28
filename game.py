@@ -9,27 +9,27 @@ frame=tk.Frame()
 frame.master.title("Project Game")
 canvas=tk.Canvas(frame)
 
-#------------------------------------------Draw grid-----------------------------
+#_________________________________Draw grid_________________________________
 grid=[
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
     [2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-    [2,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,2],
+    [2,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,2],
     [2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2],
-    [2,7,2,7,7,7,7,7,7,7,0,7,0,7,0,7,7,7,0,7,7,7,7,7,7,7,7,7,0,7,7,7,7,5,7,7,7,7,7,0,2,0,2],
+    [2,7,2,7,7,7,7,7,7,7,0,7,0,7,0,7,7,7,0,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,7,7,7,7,7,0,2,0,2],
     [2,7,2,7,2,7,7,7,7,0,7,7,0,7,7,7,0,7,7,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,7,7,7,7,7,7,2,0,2],
     [2,7,2,7,2,7,7,0,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,5,0,0,0,0,7,7,7,7,7,2,0,2],
-    [2,7,2,7,2,7,7,7,7,7,7,7,7,0,0,5,0,0,0,0,7,7,2,2,2,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,2,0,2],
+    [2,0,2,7,2,7,7,7,7,7,7,7,7,0,0,5,0,0,0,0,7,7,2,2,2,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,2,0,2],
     [2,0,2,7,2,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,7,7,7,7,7,7,7,0,7,7,0,7,7,7,7,7,7,7,7,7,2,7,2],
     [2,0,2,7,2,7,7,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,2,2,2,2,7,7,2,7,2],
     [2,0,2,7,2,7,7,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,2,0,2],
     [2,7,2,7,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,5,7,7,7,7,2,2,2,2,2,2,0,2],
     [2,0,2,7,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,7,7,2,0,2],
     [2,0,2,7,2,5,7,7,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
-    [2,0,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,7,2],
-    [2,0,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
+    [2,0,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,7,2],
+    [2,0,2,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
     [2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2],
-    [2,7,7,7,7,7,0,0,0,0,0,7,7,0,0,0,0,7,7,7,7,1,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,5,2],
+    [2,7,7,7,7,7,0,0,0,0,0,7,7,0,0,0,0,7,7,7,7,1,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,7,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ]
 
@@ -38,6 +38,7 @@ def arrayToDrawing():
     global isTrue
     canvas.delete("all")
     canvas.create_image(0, 0, image=bg, anchor='nw')
+    
     y1=30
     y2=60
     if not isTrue and scoreOfCoin<20:
@@ -57,24 +58,18 @@ def arrayToDrawing():
                 elif number==7:
                     # grid-empty
                     canvas.create_rectangle(x1,y1,x2,y2,fill="",outline="")
-                # elif number==8:
-                #     canvas.create_image(x1,y1,image=life,anchor="nw")
-                #     print(x1,y1)
                 x1=x2
                 x2+=30
             y1=y2
             y2+=30
-    else:
-        status()
 
-#---------------------------score and numoflife-----------------
-
+#____________________________score and numoflife_________________________________
 
     canvas.create_text(130,75,fill="black",font="Times 16 italic bold",text="Score: "+str(scoreOfCoin))
     canvas.create_text(600,75,fill="black",font="Times 16 italic bold",text="You have: "+str(numberOfLife)+" life")
+    
 
-
-#####------------------------------set position getIndex1--------------
+#####_________________________set position getIndex1_________________________________
 
 def getIndex1(grid):
     arr = []
@@ -85,207 +80,185 @@ def getIndex1(grid):
                 arr.append(row)
                 arr.append(col)
                 return arr
-
-#####----------------------------------------event for moveright user
-
-def moveRight(event):
+#_____________________________event for move right left up and down_________________________________ 
+def positionOfPlayer(position):
     global grid,scoreOfCoin,isTrue,numberOfLife
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
-    if col+1 < len(grid[0]) and grid[row][col+1]!=2 and grid[row][col+1]!=0 and grid[row][col+1]!=5:
+    if col+1 < len(grid[0]) and grid[row][col+1]!=2 and grid[row][col+1]!=0 and grid[row][col+1]!=5 and position=="Right":
         grid[row][col] = 7
         grid[row][col+1] = 1
         arrayToDrawing()
-    elif grid[row][col+1]!=2 and grid[row][col+1]==0 and not isTrue:
+    elif grid[row][col+1]!=2 and grid[row][col+1]==0 and not isTrue and position=="Right" :
         grid[row][col] = 7
         grid[row][col+1] = 1
+        touchCoin()
         scoreOfCoin+=1  
-        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)    
         arrayToDrawing()
-        if scoreOfCoin==20:
+        if scoreOfCoin==1:
             isTrue=True
-            status()
-            winsound.PlaySound('sound/win.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
-    elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not isTrue:
+            win()
+    elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not isTrue and position=="Right":
         grid[row][col] = 7
         grid[row][col+1] = 1
         numberOfLife-=1
-        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
+        playerDie() 
         arrayToDrawing()
         if numberOfLife==0:
             isTrue=True
-            status()
-            winsound.PlaySound('sound/gameover1.wav', winsound.SND_FILENAME|winsound.SND_ASYNC) 
-        
-    print(grid)
+            lost()
+    ####______________________________move left______________________________
+    elif col-1 >= 0 and grid[row][col-1]!=2 and grid[row][col-1]!=0 and grid[row][col-1]!=5 and position=="Left":
+        grid[row][col] = 7
+        grid[row][col-1] = 1
+        arrayToDrawing()
+    elif grid[row][col-1]!=2 and grid[row][col-1]==0 and not isTrue and position=="Left":
+        grid[row][col] = 7
+        grid[row][col-1] = 1
+        scoreOfCoin+=1
+        touchCoin()
+        arrayToDrawing()
+        if scoreOfCoin==1:
+            isTrue=True
+            win()
+    elif grid[row][col-1]!=2 and grid[row][col-1]==5 and not isTrue and position=="Left":
+        grid[row][col] = 7
+        grid[row][col-1] = 1
+        numberOfLife-=1
+        playerDie()
+        arrayToDrawing()
+        if numberOfLife==0:
+            isTrue=True
+            lost()
+    #______________________________move down______________________________
+    elif row+1 < len(grid) and grid[row+1][col]!=2 and grid[row+1][col]!=0 and grid[row+1][col]!=5 and position=="Down":
+        grid[row][col] = 7
+        grid[row+1][col] = 1
+        arrayToDrawing()
+    elif grid[row+1][col]!=2 and grid[row+1][col]==0 and not isTrue and position=="Down":
+        grid[row][col] = 7
+        grid[row+1][col] = 1
+        scoreOfCoin+=1
+        touchCoin()
+        arrayToDrawing()
+        if scoreOfCoin==1:
+            isTrue=True
+            win()
+    elif grid[row+1][col]!=2 and grid[row+1][col]==5 and not isTrue and position=="Down":
+        grid[row][col] = 7
+        grid[row+1][col] = 1
+        numberOfLife-=1
+        playerDie()
+        arrayToDrawing()
+        if numberOfLife==0:
+            isTrue=True
+            lost()
+    #______________________________move up_________________________________
 
-#####------------------------------------event for moveleft user
+    elif row-1 >= 0 and grid[row-1][col]!=2 and grid[row-1][col]!=0 and grid[row-1][col]!=5 and position=="Up":
+        grid[row][col] = 7
+        grid[row-1][col] = 1
+        arrayToDrawing()
+    elif grid[row-1][col]!=2 and grid[row-1][col]==0 and not isTrue and position=="Up":
+        grid[row][col] = 7
+        grid[row-1][col] = 1
+        scoreOfCoin+=1
+        touchCoin()
+        arrayToDrawing()
+        if scoreOfCoin==1:
+            isTrue=True
+            win()
+
+    elif grid[row-1][col]!=2 and grid[row-1][col]==5 and not isTrue and position=="Up":
+        grid[row][col] = 7
+        grid[row-1][col] = 1
+        numberOfLife-=1
+        playerDie()
+        arrayToDrawing()
+        if numberOfLife==0:
+            isTrue=True
+            lost()
+#_________________________________event for moveright user_________________________________
+def moveRight(event):
+    positionOfPlayer("Right")
+    playerWork()
+
+#_________________________________event for moveleft user
 
 def moveLeft(event):
-    global grid,scoreOfCoin,isTrue,numberOfLife
-    arrayOfindex1 = getIndex1(grid)
-    row = arrayOfindex1[0]
-    col = arrayOfindex1[1]
-    if col-1 >= 0 and grid[row][col-1]!=2 and grid[row][col-1]!=0 and grid[row][col-1]!=5:
-        grid[row][col] = 7
-        grid[row][col-1] = 1
-        arrayToDrawing()
-    elif grid[row][col-1]!=2 and grid[row][col-1]==0 and not isTrue:
-        grid[row][col] = 7
-        grid[row][col-1] = 1
-        scoreOfCoin+=1
-        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if scoreOfCoin==20:
-            isTrue=True
-            status()
-    elif grid[row][col-1]!=2 and grid[row][col-1]==5 and not isTrue:
-        grid[row][col] = 7
-        grid[row][col-1] = 1
-        numberOfLife-=1
-        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if numberOfLife==0:
-            isTrue=True
-            status()  
-    print(grid)
-
-#####---------------------------------event for moveDown user--------------
+        positionOfPlayer("Left")
+        playerWork()
+#_________________________________event for moveDown user_________________________________
 
 def moveDown(event):
-    global grid,scoreOfCoin,isTrue,numberOfLife
-    arrayOfindex1 = getIndex1(grid)
-    row = arrayOfindex1[0]
-    col = arrayOfindex1[1]
-    if row+1 < len(grid) and grid[row+1][col]!=2 and grid[row+1][col]!=0 and grid[row+1][col]!=5:
-        grid[row][col] = 7
-        grid[row+1][col] = 1
-        arrayToDrawing()
-    elif grid[row+1][col]!=2 and grid[row+1][col]==0 and not isTrue:
-        grid[row][col] = 7
-        grid[row+1][col] = 1
-        scoreOfCoin+=1
-        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if scoreOfCoin==20:
-            isTrue=True
-            status()
-    elif grid[row+1][col]!=2 and grid[row+1][col]==5 and not isTrue:
-        grid[row][col] = 7
-        grid[row+1][col] = 1
-        numberOfLife-=1
-        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if numberOfLife==0:
-            isTrue=True
-            status()  
-    print(grid)
-
-#####------------------------------------event for moveUp user-------------------
+        positionOfPlayer("Down")
+        playerWork()
+#_________________________________event for moveUp user_________________________________
 
 def moveUp(event):
-    global grid,scoreOfCoin,isTrue,numberOfLife
-    arrayOfindex1 = getIndex1(grid)
-    row = arrayOfindex1[0]
-    col = arrayOfindex1[1]
-    if row-1 >= 0 and grid[row-1][col]!=2 and grid[row-1][col]!=0 and grid[row-1][col]!=5:
-        grid[row][col] = 7
-        grid[row-1][col] = 1
-        arrayToDrawing()
-    elif grid[row-1][col]!=2 and grid[row-1][col]==0 and not isTrue:
-        grid[row][col] = 7
-        grid[row-1][col] = 1
-        scoreOfCoin+=1
-        winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if scoreOfCoin==20:
-            isTrue=True
-            status() 
-    elif grid[row-1][col]!=2 and grid[row-1][col]==5 and not isTrue:
-        grid[row][col] = 7
-        grid[row-1][col] = 1
-        numberOfLife-=1
-        winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-        arrayToDrawing()
-        if numberOfLife==0:
-            isTrue=True
-            status()
-    print(grid)
-
-
-#-------------------------create window for win / lost-----------------
-def status():
-    global scoreOfCoin,numberOfLife
-    if scoreOfCoin==20:
-        canvas.create_text(500,400,text="YOU WIN !",font=("Pursia",30,"bold"))
-    elif numberOfLife==0:
-        canvas.create_text(500,400,text="YOU LOST !",font=("Pursia",30,"bold"))
-    canvas.create_window(500,500,window=buttonExit)
-    canvas.create_window(800,500,window=buttonRestart)
-
-# # ---------------------------------display message win--------------------------
+    positionOfPlayer("Up")
+    
+# _________________________________display message win_________________________________
 
 def win():
-    canvas.create_text(500,400,text="YOU WIN !",font=("Pursia",30,"bold"))
-    canvas.create_window(500,500,window=buttonExit)
-    canvas.create_window(800,500,window=buttonRestart)
-# ------------------------------------display message lost---------------------
-def lost():
-    canvas.create_text(500,400,text="YOU LOST !",font=("Pursia",30,"bold"))
-    canvas.create_window(500,500,window=buttonExit)
-    canvas.create_window(800,500,window=buttonRestart)
+    global grid
+    canvas.delete("all")
+    canvas.create_image(650, 300, image=winnerImg)
+    canvas.create_text(700,300,text="🙌YOU WIN🙌 !",font=("Pursia",30,"bold"))
+    gameWin()
 
-## -----------------------------Button Start Game-------------------
+# _________________________________display message lost_________________________________
+def lost():
+    canvas.delete("all")
+    canvas.create_image(650, 300, image=lostImg)
+    canvas.create_text(700,300)
+    gameOver()
+
+##_________________________________Button Start Game_________________________________
 
 def startGame():
     arrayToDrawing()
     button_start.pack_forget()
 button_start=tk.Button( root,text="Start Play",font=("Times",40) ,command=startGame)
 canvas.create_window(600,400,window=button_start)
+winsound.PlaySound('sound/startgame.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
 
+#__________________________________________sound action____________
+def touchCoin():
+    winsound.PlaySound('sound/coin4.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+def playerDie():
+    winsound.PlaySound('sound/die.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+def gameOver():
+    winsound.PlaySound('sound/gameover1.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+def gameWin():
+    winsound.PlaySound('sound/win.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+def playerWork():
+    winsound.PlaySound('sound/player.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
 
-
-#------------------------------------button exit---------------------
-def exit():
-    root.destroy()
-buttonExit=tk.Button(text="EXIT",font=("Pursia",20,"bold"),bg="blue",padx=20,pady=12,command=exit)
-
-#------------------------------------button restart-------------------
-def restart():
-    arrayToDrawing()
-    
-buttonRestart=tk.Button(root,text="play",font=("Pursia",20,"bold"),bg="blue",padx=20,pady=12,command=restart)
-
-
-
-
-####----------------------------add image----------------------------
-
-
-
+#__________________________________________add image_________________
 myImage= tk.PhotoImage(file='images/player.png')
 img=tk.PhotoImage(file="images/walls.png")
 anemy6=tk.PhotoImage(file='images/enyme6.png')
 coins=tk.PhotoImage(file='images/coin.png')
-life=tk.PhotoImage(file='images/life.png')
 bg=tk.PhotoImage(file='images/bg.png')
 canvas.create_image(0, 0, image=bg, anchor='nw')
-
-
-#--------------//variblel globla//--------------------
+winnerImg = tk.PhotoImage(file="images/winner.png")
+lostImg = tk.PhotoImage(file="images/lost.png")
+#________________________________________variblel globla__________________
 
 numberOfLife=3
 scoreOfCoin=0
 topScore=173
 isTrue=False
+isWon = True
 
-#------------------------------------------------event for move game-------------------
+#__________________________________event for move game_________________________________
 root.bind('<Right>', moveRight)
 root.bind('<Left>', moveLeft)
 root.bind('<Down>', moveDown)
 root.bind('<Up>', moveUp)
-# --------button----
+# _________________________________button_________________________________
 canvas.pack(expand=True,fill='both')
 frame.pack(expand=True,fill='both')
 root.mainloop()
