@@ -96,7 +96,7 @@ def positionOfPlayer(position):
         touchCoin()
         scoreOfCoin+=1  
         arrayToDrawing()
-        if scoreOfCoin==1:
+        if scoreOfCoin==10:
             isTrue=True
             win()
     elif  grid[row][col+1]!=2 and grid[row][col+1]==5 and not isTrue and position=="Right":
@@ -119,7 +119,7 @@ def positionOfPlayer(position):
         scoreOfCoin+=1
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==1:
+        if scoreOfCoin==10:
             isTrue=True
             win()
     elif grid[row][col-1]!=2 and grid[row][col-1]==5 and not isTrue and position=="Left":
@@ -142,7 +142,7 @@ def positionOfPlayer(position):
         scoreOfCoin+=1
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==1:
+        if scoreOfCoin==10:
             isTrue=True
             win()
     elif grid[row+1][col]!=2 and grid[row+1][col]==5 and not isTrue and position=="Down":
@@ -166,7 +166,7 @@ def positionOfPlayer(position):
         scoreOfCoin+=1
         touchCoin()
         arrayToDrawing()
-        if scoreOfCoin==1:
+        if scoreOfCoin==10:
             isTrue=True
             win()
 
@@ -182,18 +182,15 @@ def positionOfPlayer(position):
 #_________________________________event for moveright user_________________________________
 def moveRight(event):
     positionOfPlayer("Right")
-    playerWork()
 
 #_________________________________event for moveleft user
 
 def moveLeft(event):
         positionOfPlayer("Left")
-        playerWork()
 #_________________________________event for moveDown user_________________________________
 
 def moveDown(event):
         positionOfPlayer("Down")
-        playerWork()
 #_________________________________event for moveUp user_________________________________
 
 def moveUp(event):
@@ -233,8 +230,7 @@ def gameOver():
     winsound.PlaySound('sound/gameover1.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
 def gameWin():
     winsound.PlaySound('sound/win.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
-def playerWork():
-    winsound.PlaySound('sound/player.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+
 
 #__________________________________________add image_________________
 myImage= tk.PhotoImage(file='images/player.png')
