@@ -10,6 +10,12 @@ frame=tk.Frame()
 frame.master.title("Project Game")
 canvas=tk.Canvas(frame)
 
+
+#____________data___________
+enami=5
+gridEmty=7
+walls=2
+coins=0
 #_________________________________Draw grid_________________________________
 grid=[
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
@@ -26,14 +32,13 @@ grid=[
     [2,0,2,7,2,7,7,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,2,0,2],
     [2,7,2,7,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,5,7,7,7,7,2,2,2,2,2,2,0,2],
     [2,0,2,7,2,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,7,7,2,0,2],
-    [2,0,2,7,2,5,7,7,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
+    [2,0,2,7,2,5,7,7,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
     [2,0,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,7,2],
     [2,0,2,7,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,7,7,2,7,2],
     [2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,2],
     [2,7,7,7,7,7,0,0,0,0,0,7,7,0,0,0,0,7,7,7,7,1,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,7,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ]
-
 
 def arrayToDrawing():
     global isTrue
@@ -57,7 +62,7 @@ def arrayToDrawing():
                 elif number==5:
                     canvas.create_image(x1, y1, image=anemy6, anchor="nw" )
                 elif number==7:
-                    # grid-empty
+                    # gridEmpty
                     canvas.create_rectangle(x1,y1,x2,y2,fill="",outline="")
                 x1=x2
                 x2+=30
@@ -87,6 +92,7 @@ def positionOfPlayer(position):
     arrayOfindex1 = getIndex1(grid)
     row = arrayOfindex1[0]
     col = arrayOfindex1[1]
+#_______________________________move player to right______________
     if col+1 < len(grid[0]) and grid[row][col+1]!=2 and grid[row][col+1]!=0 and grid[row][col+1]!=5 and position=="Right":
         grid[row][col] = 7
         grid[row][col+1] = 1
@@ -109,7 +115,7 @@ def positionOfPlayer(position):
         if numberOfLife==0:
             isTrue=True
             lost()
-    ####______________________________move left______________________________
+    ####______________________________move player to left______________________________
     elif col-1 >= 0 and grid[row][col-1]!=2 and grid[row][col-1]!=0 and grid[row][col-1]!=5 and position=="Left":
         grid[row][col] = 7
         grid[row][col-1] = 1
@@ -132,7 +138,7 @@ def positionOfPlayer(position):
         if numberOfLife==0:
             isTrue=True
             lost()
-    #______________________________move down______________________________
+    #______________________________move player to down______________________________
     elif row+1 < len(grid) and grid[row+1][col]!=2 and grid[row+1][col]!=0 and grid[row+1][col]!=5 and position=="Down":
         grid[row][col] = 7
         grid[row+1][col] = 1
@@ -155,7 +161,7 @@ def positionOfPlayer(position):
         if numberOfLife==0:
             isTrue=True
             lost()
-    #______________________________move up_________________________________
+    #______________________________move player to Up_________________________________
 
     elif row-1 >= 0 and grid[row-1][col]!=2 and grid[row-1][col]!=0 and grid[row-1][col]!=5 and position=="Up":
         grid[row][col] = 7
@@ -257,9 +263,7 @@ lostImg = tk.PhotoImage(file="images/lost.png")
 
 numberOfLife=3
 scoreOfCoin=0
-topScore=5000
 isTrue=False
-isWon = True
 
 #__________________________________event for move game_________________________________
 root.bind('<Right>', moveRight)
